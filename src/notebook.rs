@@ -1,4 +1,4 @@
-// Put this in notebook.rs or similar
+
 
 use serde::Deserialize;
 
@@ -20,6 +20,9 @@ pub struct Cell {
     #[serde(default)]
     pub outputs: Vec<serde_json::Value>,
 }
+
+
+
 
 
 

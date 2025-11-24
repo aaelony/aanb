@@ -69,6 +69,13 @@ pub fn IpynbViewer() -> Element {
                                             "{line}"
                                         }
                                     }
+				    hr{}
+				    p { "Output:" }
+				    pre {
+					for output in &cell.outputs {
+					    "{output}"
+					}
+				    }
 				    hr {}
                                 }
                             }
