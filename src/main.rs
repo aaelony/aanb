@@ -1,5 +1,5 @@
 use dioxus::prelude::*;
-use nbcat::{DisplayIpynb, Opts};
+// use nbcat::{DisplayIpynb, Opts};
 use serde::Deserialize;
 
 mod notebook;
