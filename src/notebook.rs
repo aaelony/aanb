@@ -1,5 +1,3 @@
-
-
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
@@ -20,9 +18,3 @@ pub struct Cell {
     #[serde(default)]
     pub outputs: Vec<serde_json::Value>,
 }
-
-
-
-
-
-

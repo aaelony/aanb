@@ -1,6 +1,5 @@
-use dioxus::prelude::*;
 use crate::notebook::Notebook;
-
+use dioxus::prelude::*;
 
 #[component]
 pub fn IpynbViewer() -> Element {
@@ -10,6 +9,7 @@ pub fn IpynbViewer() -> Element {
     rsx! {
         div {
             input {
+        id: "fileselector",
                 r#type: "file",
                 accept: ".ipynb",
 
@@ -42,7 +42,6 @@ pub fn IpynbViewer() -> Element {
                     }
                 }
             }
-
             {
                 let err = error.read();
                 if let Some(e) = err.as_ref() {
@@ -52,39 +51,121 @@ pub fn IpynbViewer() -> Element {
                 }
             }
 
-            {
-                let nb = notebook.read();
-                if let Some(nb) = nb.as_ref() {
-                    rsx! {
-                        div {
-                            h2 { "Notebook:" }
 
-                            for cell in &nb.cells {
-				
-                                div {
+	    {
+		let nb = notebook.read();
+		if let Some(nb) = nb.as_ref() {
+		    rsx! {
+			div {
+			    id: "notebook",
+			    h2 { "Notebook:" }
+			    
+			    for cell in &nb.cells {
+				div {
+				    id: match cell.cell_type.as_str() {
+					"markdown" => "markdowncell",
+					"code" => "codecell",
+					"output" => "outputcell",
+					_ => "unknowncell",
+				    },
+				    style: {
+					match cell.cell_type.as_str() {
+					    "code" => "
+                                    background-color: #1e1e1e;
+                                    color: #d4d4d4;
+                                    padding: 10px;
+                                    border-radius: 6px;
+                                ",
+					    _ => ""
+					}
+				    },
+				    
 				    hr {}
-                                    h3 { "Cell type: {cell.cell_type}" }
-                                    pre {
-                                        for line in &cell.source {
-                                            "{line}"
-                                        }
-                                    }
-				    hr{}
+				    h3 { "Cell type: {cell.cell_type}" }
+				    
+				    pre {
+					for line in &cell.source {
+					    "{line}"
+					}
+				    }
+				    
+				    hr {}
 				    p { "Output:" }
+				    
 				    pre {
 					for output in &cell.outputs {
 					    "{output}"
 					}
 				    }
+				    
 				    hr {}
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    rsx!( p { "No notebook loaded." } )
-                }
-            }
-        }
+				}
+			    }
+			}
+		    }
+		} else {
+		    rsx! {
+			div {
+			    id: "usererror",
+			    p { "No notebook loaded." }
+			}
+		    }
+		}
+	    }
+	    
+
+ //              {
+ //                  let nb = notebook.read();
+ //                  if let Some(nb) = nb.as_ref() {
+ //                      rsx! {
+ //                          div {
+ //  			    id: "notebook",
+ //                              h2 { "Notebook:" }
+ //  			    
+ //                              for cell in &nb.cells {
+ //  				
+ //  				div {
+ //  				    id:  match cell.cell_type.as_str() {
+ //  					"markdown" => "markdowncell",
+ //  					"code" =>  "codecell",
+ //  					"output" => "outputcell",
+ //  					_ =>  "unknowncell",
+ //  				    },
+ //  				    
+ //  				    hr {}
+ //                                      h3 { "Cell type: {cell.cell_type}" }
+ //                                      pre {
+ //  					for line in &cell.source {
+ //                                              "{line}"
+ //  					}
+ //                                      }
+ //  				
+ //  				    hr{}
+ //  				    p { "Output:" }
+ //  				    pre {
+ //  					for output in &cell.outputs {
+ //  					    div {
+ //  						id: "outputcell"
+ //  					    },
+ //  					    "{output}"
+ //  					}
+ //  				    }
+ //  				hr {}
+ //  				}
+ //                              }
+ //  			}
+ //                      }
+ //  		} else {
+ //  		    rsx!(
+ //  			div {
+ //  			    id: "usererror",
+ //  			    p {
+ //  				"No notebook loaded."
+ //  			    }
+ //  			}
+ //  		    )
+ //  		}
+ //              } // end let
+	}
     }
 }

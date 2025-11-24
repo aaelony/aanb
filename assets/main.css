@@ -1,37 +1,40 @@
 /* App-wide styling */
 body {
-    background-color: #0f1116;
-    color: #ffffff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 20px;
+##     background-color: #0f1116;
+##     color: #ffffff;
+##    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+##     margin: 20px;
 }
 
-#hero {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+#usererror {
+    color: red;
 }
 
-#links {
-    width: 400px;
-    text-align: left;
-    font-size: x-large;
-    color: white;
-    display: flex;
-    flex-direction: column;
+#markdowncell {
+   
 }
 
-#links a {
-    color: white;
-    text-decoration: none;
-    margin-top: 20px;
-    margin: 10px 0px;
-    border: white 1px solid;
-    border-radius: 5px;
+#codecell {
+    ## background-color: #1e1e1e;
+    background-color: gray;
+    color: #d4d4d4;
     padding: 10px;
+    border-radius: 6px;
+    font-family: monospace;
+    white-space: pre-wrap;
 }
+
+#outputcell {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;   
+    padding: 15px;            
+    margin-bottom: 20px;      
+    border-radius: 5px;       
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
+    font-family: monospace; 
+}
+
 
 #links a:hover {
     background-color: #1f1f1f;
@@ -42,7 +45,9 @@ body {
     max-width: 1200px;
 }
 
-
+#fileselector {
+    color: darkgreen;    
+}
 
 /* Echo */
 #echo {
