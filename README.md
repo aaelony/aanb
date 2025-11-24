@@ -7,7 +7,9 @@ Contains:
  - It will render the file in a manner that relies on [nbcat](https://github.com/moisutsu/nbcat/).
  - It does not currently syntax highlight the codes in the cells. (This may become a todo!).
  - It does not enable any kind of kernel that would allow running cells.  (This may become a todo!).
- 
+
+
+<img src="screenshot.png" />
 
 See [Dioxus readme](dioxus-readme.md) for more info about Dioxus and how to build and run.
 
